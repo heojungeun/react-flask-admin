@@ -9,14 +9,14 @@ function App(){
   const {token, removeToken, setToken} = useToken();
 
   return (
-    <BrowserRouter>
+    <>
       <div className="App">
         <Header token={token} removeToken={removeToken} />
         {token && token !== "" && token !== undefined ?
           <Main token={token} /> : <Login setToken={setToken}/>
         }
       </div>
-    </BrowserRouter>
+    </>
   );
 }
 
