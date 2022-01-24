@@ -43,6 +43,7 @@ function Header(props) {
         })
         .then((response) => {
             props.removeToken()
+            document.location.href = "/"
         }).catch((error) => {
             if(error.response){
                 console.log(error.response);
@@ -50,7 +51,7 @@ function Header(props) {
                 console.log(error.response.headers);
             }
         })
-        document.location.href = "/"
+        
     }
 
     const useConfirmLogout = useConfirm(

@@ -48,6 +48,7 @@ function Login(props) {
         loginid: "",
         loginpw: ""
     });
+    const [unauth, setUnauth] = useState("")
 
     function loginMe(event){
         axios({
@@ -59,13 +60,15 @@ function Login(props) {
             }
         })
         .then((response) => {
-            props.setToken(response.data.access_token)
+            props.setToken(response.data.access_token);
+            setUnauth("");
         })
         .catch((error) => {
             if(error.response){
                 console.log(error.response);
                 console.log(error.response.status);
                 console.log(error.response.headers);
+                setUnauth("ID나 비밀번호가 틀렸습니다.");
             }
         });
 
@@ -119,6 +122,7 @@ function Login(props) {
                 name="loginpw"
                 placeholder='Password'
                 value={loginForm.loginpw} />
+              <Typography variant="body1">{unauth}</Typography>
               <Button
                 type="submit"
                 onClick={loginMe}

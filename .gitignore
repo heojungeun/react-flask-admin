@@ -27,3 +27,4 @@ flask01/.flaskenv
 flask01/config.py
 flask01/test.py
 flask01/__pycache__
+flask01/.idea/

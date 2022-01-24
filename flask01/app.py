@@ -38,9 +38,13 @@ def create_token():
     loginpw = request.json.get("loginpw", None)
 
     sql_test = "select login_id, login_pw from users where login_id = %s and login_pw = %s"
-    result = app.database.execute(sql_test, (loginid, loginpw,)).first()
-    if len(result) < 0:
+    try:
+        result = app.database.execute(sql_test, (loginid, loginpw,)).first()
+        if len(result) < 0:
+            return {"msg": "Wrong ID or Password"}, 401
+    except:
         return {"msg": "Wrong ID or Password"}, 401
+
     access_token = create_access_token(identity=loginid)
     response = {"access_token": access_token}
     return response
