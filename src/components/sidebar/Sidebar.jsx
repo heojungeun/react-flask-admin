@@ -17,7 +17,13 @@ function Sidebar(){
                                     Home
                             </NavLink>
                         </li>
-                        <li className='sidebarListItem'>Analystics</li>
+                        <li className='sidebarListItem'>
+                            <NavLink 
+                                activeclassname='active' 
+                                to='/channels'>
+                                    Channels
+                            </NavLink>
+                        </li>
                         <li className='sidebarListItem'>DB</li>
                     </ul>
                 </div>
@@ -26,6 +32,7 @@ function Sidebar(){
                     <ul className='sidebarList'>
                         <li className='sidebarListItem'>
                             <NavLink 
+                                exact
                                 activeclassname='active' 
                                 to='/user'>
                                     User

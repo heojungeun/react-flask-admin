@@ -74,5 +74,19 @@ def getUserDataRow():
     } for row in result]
     return jsonify(data)
 
+@app.route("/ivsmetainput", methods=["POST"])
+@jwt_required()
+def ivsmetainput():
+    arn = request.json.get("arn", None)
+    metainfo = request.json.get("meta", None)
+    print(metainfo)
+    sql_test = "insert user values (NULL, %s, %s, %s)"
+    try:
+        app.database.execute(sql_test, (arn,))
+    except:
+        return {"msg": "wrong data request"}, 401
+    response = jsonify({"msg": "ivsmetainput successful"})
+    return response
+
 if __name__ == "__main__":
     app.run()

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import './userdetail.css';
+import './UserDetail.css';
 import { DataGrid } from '@mui/x-data-grid';
 import { DeleteOutline, MailOutline, PanoramaSharp, PermIdentity } from '@material-ui/icons';
 // @mui/x-data-grid install 시, @emotion/styled @emotion/react install 필요함

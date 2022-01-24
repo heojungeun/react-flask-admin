@@ -11,7 +11,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Home from './home/Home'
 import User from './User/User'
 import UserDetail from './UserDetail/UserDetail'
-
+import Channels from './Channels/Channels'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -40,6 +40,7 @@ function PageComponents(){
                 <Route exact path="/" element={<Home />} />
                 <Route exact path="/user" element={<User />} />
                 <Route exact path="/user/:userId" element={<UserDetail />} />
+                <Route exact path="/channels" element={<Channels />} />
             </Routes>
         </div>  
     );

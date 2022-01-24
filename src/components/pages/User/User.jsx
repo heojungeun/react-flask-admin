@@ -1,11 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import './user.css';
+import './User.css';
 import { DataGrid } from '@mui/x-data-grid';
 import { DeleteOutline, PanoramaSharp } from '@material-ui/icons';
 // @mui/x-data-grid install 시, @emotion/styled @emotion/react install 필요함
 import { Link } from 'react-router-dom';
 import axios from "axios"
-// import DataRow from './DataRow';
 
 
 function User(){

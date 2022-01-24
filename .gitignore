@@ -28,3 +28,8 @@ flask01/config.py
 flask01/test.py
 flask01/__pycache__
 flask01/.idea/
+
+src/amazon-ivs-player.min.js
+src/assets/
+src/utils/Heart.jsx
+src/utils/utils.js
