@@ -10,6 +10,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Home from './home/Home'
 import User from './User/User'
+import UserDetail from './UserDetail/UserDetail'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -34,14 +35,13 @@ function PageComponents(){
     const classes = useStyles();
 
     return (
-        <Router>
-            <div className={classes.root}>
-                <Routes>
-                    <Route exact path="/" element={<Home />} />
-                    <Route exact path="/user" element={<User />} />
-                </Routes>
-            </div>  
-        </Router>
+        <div className={classes.root}>
+            <Routes>
+                <Route exact path="/" element={<Home />} />
+                <Route exact path="/user" element={<User />} />
+                <Route exact path="/user/:userId" element={<UserDetail />} />
+            </Routes>
+        </div>  
     );
 }
 

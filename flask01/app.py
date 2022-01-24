@@ -55,14 +55,24 @@ def logout():
     unset_jwt_cookies(response)
     return response
 
-@app.route("/profile", methods=["GET"])
+@app.route("/UserDataRow", methods=["GET"])
 @jwt_required()
-def my_profile():
-    response_body = {
-        "name": "Nagato",
-        "about": "Hello, I'm a admin"
-    }
-    return response_body
+def getUserDataRow():
+    sql_test = "select * from users"
+    try:
+        result = app.database.execute(sql_test).fetchall()
+        if len(result) < 0:
+            return {"msg": "Wrong ID or Password"}, 401
+    except:
+        return {"msg": "Wrong ID or Password"}, 401
+    data = [{
+        'id': row['id'],
+        'User_ID': row['login_id'],
+        #'loginpw': row['login_id'],
+        'User_Name': row['name'],
+        'User_Email': row['email']
+    } for row in result]
+    return jsonify(data)
 
 if __name__ == "__main__":
     app.run()

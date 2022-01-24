@@ -35,7 +35,18 @@
 }
 
 .sidebarListItem:active,
-.sidebarListItem:hover {
+.sidebarListItem:hover,
+.active:hover {
     background-color: rgb(161, 172, 218);
     color: white;
+}
+
+ul a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.active {
+    /* background-color: rgb(161, 172, 218); */
+    color: rgb(161, 172, 218); 
 }

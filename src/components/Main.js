@@ -1,5 +1,5 @@
 import { lazy } from 'react'
-import {Route, Routes} from 'react-router-dom'
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
@@ -22,23 +22,23 @@ function Main(props){
     const token = props.token;
 
     return (
-        <>
-            <div className={classes.root}>
+        <div className={classes.root}>
+            <Router>
                 <Sidebar />
-                <PageComponents />
-                {/* <Card className={classes.container} variant="outlined">
-                    <CardContent>
-                    
-                    <Typography variant="h5">
-                        Welcome!
-                    </Typography>
-                    </CardContent>
-                </Card> */}
-                {/* <Avatar src={user.avatar} className={classes.large} />
-                    
-                    Welcome {user.fname} {user.lname} */}
-            </div>  
-        </>
+                <PageComponents/>
+            </Router>
+            {/* <Card className={classes.container} variant="outlined">
+                <CardContent>
+                
+                <Typography variant="h5">
+                    Welcome!
+                </Typography>
+                </CardContent>
+            </Card> */}
+            {/* <Avatar src={user.avatar} className={classes.large} />
+                
+                Welcome {user.fname} {user.lname} */}
+        </div>  
     );
 }
 
