@@ -31,6 +31,6 @@ flask01/.idea/
 
 src/components/pages/Channels/ChannelInfo.js
 src/amazon-ivs-player.min.js
-src/assets/
-src/utils/Heart.jsx
-src/utils/utils.js
+# src/assets/
+# src/utils/Heart.jsx
+# src/utils/utils.js
