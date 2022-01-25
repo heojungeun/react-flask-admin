@@ -4,44 +4,44 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Getting Started
-- key, url 정보 입력해둘 파일 생성
+key, url 정보를 넣어둘 파일을 생성해야 합니다.
 
-    - flask01 폴더(백엔드 서버)
+- flask01 폴더(백엔드 서버)
 
-        - .env
+    - .env
 
-            ```txt
-            JWT_SECRET_KEY="JSK"
-            FLASK_APP_KEY="FAK"
-            FLASK_APP=app.py
-            FLASK_ENV=development
-            ```
-        
-        - config.py
-
-            ```python
-            db = {
-                'user'     : 'username',
-                'password' : 'pw',
-                'host'     : 'host',
-                'port'     : '3306',
-                'database' : 'dbname',
-            }
-
-            DB_URL = f"mysql+pymysql://{db['user']}:{db['password']}@{db['host']}:{db['port']}/{db['database']}?charset=utf8"
-
-            ```
-    - src/components/pages/Channels/Channelinfo.js
-
-        ```javascript
-        const playbackUrl = "";
-        const arn = "";
-        const json = {
-            playbackUrl: playbackUrl,
-            arn: arn
-        };
-        export default json;
+        ```txt
+        JWT_SECRET_KEY="JSK"
+        FLASK_APP_KEY="FAK"
+        FLASK_APP=app.py
+        FLASK_ENV=development
         ```
+    
+    - config.py
+
+        ```python
+        db = {
+            'user'     : 'username',
+            'password' : 'pw',
+            'host'     : 'host',
+            'port'     : '3306',
+            'database' : 'dbname',
+        }
+
+        DB_URL = f"mysql+pymysql://{db['user']}:{db['password']}@{db['host']}:{db['port']}/{db['database']}?charset=utf8"
+
+        ```
+- src/components/pages/Channels/Channelinfo.js
+
+    ```javascript
+    const playbackUrl = "";
+    const arn = "";
+    const json = {
+        playbackUrl: playbackUrl,
+        arn: arn
+    };
+    export default json;
+    ```
 
 ## Available Scripts
 
