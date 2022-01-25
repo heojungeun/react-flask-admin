@@ -75,16 +75,15 @@ def getUserDataRow():
     return jsonify(data)
 
 @app.route("/ivsmetainput", methods=["POST"])
-@jwt_required()
 def ivsmetainput():
     arn = request.json.get("arn", None)
-    metainfo = request.json.get("meta", None)
-    print(metainfo)
+    metainfo = eval(request.json.get("meta", None))
+    print(arn + ", meta: " + metainfo["prot"] + "," + str(metainfo["playerID"]))
     sql_test = "insert user values (NULL, %s, %s, %s)"
     try:
-        app.database.execute(sql_test, (arn,))
+        app.database.execute(sql_test, (str(arn),str(metainfo["prot"]), str(metainfo["playerID"])))
     except:
-        return {"msg": "wrong data request"}, 401
+        return {"msg": "wrong data request"}, 500
     response = jsonify({"msg": "ivsmetainput successful"})
     return response
 

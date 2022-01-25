@@ -6,12 +6,13 @@ import Heart from '../../../utils/Heart';
 import { getRandomColor } from '../../../utils/utils';
 import { Favorite } from '../../../assets/icons';
 import { VolumeOff, VolumeUp } from '../../../assets/icons';
+import json from './ChannelInfo';
 
 let player = null;
 const playerID = Date.now();
 
 function AWSIVSPlayer(options) {
-    
+    const { IVSPlayer } = window;
     const divEl = useRef(null);
     const videoEl = useRef(null);
     const [muted, setMuted] = useState(true);
@@ -20,44 +21,51 @@ function AWSIVSPlayer(options) {
     const heartCount = 2;
     const [hearts, setHearts] = useState([]);
     console.log(PLAYBACK_URL);
-    // useEffect(() => {
-    //     const script = document.createElement('script');
-    //     script.src = 'https://player.live-video.net/1.5.0/amazon-ivs-player.min.js';
-    //     script.async = true;
-    //     document.body.appendChild(script);
-    //     script.onload = () => {
-    //         if (IVSPlayer.isPlayerSupported) {
-    //             console.log("player init")
-    //             player = IVSPlayer.create();
-    //             player.attachHTMLVideoElement(document.getElementById('video-player'));
-    //             player.load(PLAYBACK_URL);
-    //             player.setMuted(true);
-    //             player.play();
-    //             player.addEventListener(IVSPlayer.PlayerState.READY, onStateChange);
-    //             player.addEventListener(IVSPlayer.PlayerState.PLAYING, onStateChange);
-    //             player.addEventListener(IVSPlayer.PlayerState.ENDED, onStateChange);
-    //             player.addEventListener(IVSPlayer.PlayerState.ERROR, onError);
-    //             player.addEventListener(IVSPlayer.PlayerEventType.TEXT_METADATA_CUE, function (cue) {
-    //                 const metadataText = JSON.parse(cue.text);
-    //                 console.log("TRIGGER!!");
-    //                 console.log("prot: " + metadataText.prot);
-    //                 console.log("playerID: " + metadataText.playerID)
-    //                 if (metadataText.prot === "Like" && metadataText.playerID !== playerID) {
-    //                     animateLike(false);
-    //                 }
-    //             });
-    //         }
-    //     }
-    //     return () => {
-    //         console.log("return script");
-    //         document.body.removeChild(script);
-    //         player.removeEventListener(IVSPlayer.PlayerState.READY, onStateChange);
-    //         player.removeEventListener(IVSPlayer.PlayerState.PLAYING, onStateChange);
-    //         player.removeEventListener(IVSPlayer.PlayerState.ENDED, onStateChange);
-    //         player.removeEventListener(IVSPlayer.PlayerState.ERROR, onError);
-    //         player.removeEventListener(IVSPlayer.PlayerEventType.TEXT_METADATA_CUE);
-    //     }
-    // }, [PLAYBACK_URL])
+    useEffect(() => {
+        try{
+            console.log(IVSPlayer.isPlayerSupported);
+        } catch(e){
+            console.log(e);
+        }
+    }, [PLAYBACK_URL])
+    useEffect(() => {
+        // const script = document.createElement('script');
+        // script.src = 'https://player.live-video.net/1.5.0/amazon-ivs-player.min.js';
+        // script.async = true;
+        // document.body.appendChild(script);
+        // script.onload = () => {
+        if (IVSPlayer.isPlayerSupported) {
+            console.log("player init")
+            player = IVSPlayer.create();
+            player.attachHTMLVideoElement(document.getElementById('video-player'));
+            player.load(PLAYBACK_URL);
+            player.setMuted(true);
+            player.play();
+            player.addEventListener(IVSPlayer.PlayerState.READY, onStateChange);
+            player.addEventListener(IVSPlayer.PlayerState.PLAYING, onStateChange);
+            player.addEventListener(IVSPlayer.PlayerState.ENDED, onStateChange);
+            player.addEventListener(IVSPlayer.PlayerState.ERROR, onError);
+            player.addEventListener(IVSPlayer.PlayerEventType.TEXT_METADATA_CUE, function (cue) {
+                const metadataText = JSON.parse(cue.text);
+                console.log("TRIGGER!!");
+                console.log("prot: " + metadataText.prot);
+                console.log("playerID: " + metadataText.playerID)
+                if (metadataText.prot === "Like" && metadataText.playerID !== playerID) {
+                    animateLike(false);
+                }
+            });
+        }
+        //}
+        return () => {
+            console.log("return script");
+            //document.body.removeChild(script);
+            player.removeEventListener(IVSPlayer.PlayerState.READY, onStateChange);
+            player.removeEventListener(IVSPlayer.PlayerState.PLAYING, onStateChange);
+            player.removeEventListener(IVSPlayer.PlayerState.ENDED, onStateChange);
+            player.removeEventListener(IVSPlayer.PlayerState.ERROR, onError);
+            player.removeEventListener(IVSPlayer.PlayerEventType.TEXT_METADATA_CUE);
+        }
+    }, [PLAYBACK_URL])
 
     const onStateChange = (cue) => {
         const newState = player.getState();
@@ -97,7 +105,7 @@ function AWSIVSPlayer(options) {
                 data: params
             })
             .then((response) => {
-                console.log(response.data);
+                //console.log(response.data);
             }).catch((error) => {
                 if(error.response){
                     console.log("error: "+ error.response);
@@ -176,19 +184,15 @@ function AWSIVSPlayer(options) {
 }
 
 function Channels(){
-    const playbackUrl = "";
-    const arn = "";
 
     return (
         <div className='Channels'>
             <h3 className='title'>Channels</h3>
             <div className='container'>
                 <div className='video'>
-                    <div className='video-container'>
-                        <div className="video-frame">
-                            <AWSIVSPlayer location={playbackUrl} arn={arn} />
-                        </div>
-                    </div>
+                    
+                    <AWSIVSPlayer location={json.playbackUrl} arn={json.arn} />
+                      
                 </div>
             </div>
         </div>

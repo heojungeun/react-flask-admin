@@ -29,6 +29,7 @@ flask01/test.py
 flask01/__pycache__
 flask01/.idea/
 
+src/components/pages/Channels/ChannelInfo.js
 src/amazon-ivs-player.min.js
 src/assets/
 src/utils/Heart.jsx

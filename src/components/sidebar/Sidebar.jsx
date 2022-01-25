@@ -32,7 +32,7 @@ function Sidebar(){
                     <ul className='sidebarList'>
                         <li className='sidebarListItem'>
                             <NavLink 
-                                exact
+                                exact='true'
                                 activeclassname='active' 
                                 to='/user'>
                                     User
